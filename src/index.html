@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <script type="module" src="js/main.js"></script>
+  </head>
+  <body>
+    <h1 class="text-center">List Your Items Here</h1>
+    <div 
+    class="container mt-5" 
+    x-data="todoApp()"
+  >
+    <div class="input_area">
+	  <form>
+        <fieldset>
+          <input 
+            class="user_input_task form-control"
+            type="text"
+            placeholder="What do you want to do today?"
+          />
+            <button class="button" @click="addTodo" x-transition>Add</button>
+        </fieldset>
+	  </form>
+    </div>	
+	
+    <div class="task_list">
+      <template 
+        x-show="todos.length"
+        x-for="task in todos"
+        :key="task.id"
+      >
+        <div class="todo">
+          <input 
+            class="form-check-inline"
+            type="checkbox"
+            @click="completeTodo(task)"
+          />
+          <div 
+            x-text="task.item"
+            class="task-item"
+            @click="setEdit(task)"
+            x-show="!task.editing"
+            :class="{'completed' : task.completed }"
+          ></div>
+		  
+          <input 
+            type="text"
+            x-show="task.editing"
+            x-model="task.item"
+            :value="task.item"
+            @click.away="task.editing=false"
+            class="task_edit form-control w-25"
+            :id="`task_edit-${task.id}`"
+          />
+          <span
+            class="task-remove"
+            @click="remove(event, task.id)"
+          ><img class="recycle" src="whiteDust.png" alt=""></span>
+        </div>
+      </template>
+      <div class="empty_task_msg" x-show="!todos.length">No plans for today!</div>
+    </div>
+  </div>
+    
+    <script >
+      
+
+
+
+        // function getLatestPost(posts){
+        //     console.log(posts.slice(-1).pop())
+        // }
+    </script>
+  </body>
+</html>

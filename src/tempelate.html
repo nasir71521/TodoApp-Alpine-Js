@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO LIST</title>
+</head>
+<body>
+    <p id="app" class="text-center"></p>
+    <div x-data="{ open: false }">
+      <button @click="open = !open">Expand</button>
+   
+      <span x-show="open" x-transition>
+        Content...
+      </span>
+  </div>
+
+   <!-- x-on & x-bind   -->
+    <div x-data="{
+      open: false, 
+      name:'Brad', 
+      search: '',
+      posts: [
+        {title: 'Post One'},
+        {title: 'Post Two'},
+        {title: 'Post ThREE'},
+        {title: 'Post Four'}
+      ]  
+    }">
+      <button x-on:click="open = !open"  x-bind:class="open ? 'bg-primary' : 'bg-danger'" class="btn">
+         Show
+      </button>
+
+      <!-- X-Show -->
+      <div x-show="open" x-transition x-cloak>
+        <p class="container w-50 p-4 bg-info text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam 
+          distinctio blanditiis aliquam accusantium cum iusto, magni expedita illo, m
+          olestias vero consequatur a
+          ut tempore voluptas similique, in repudiandae consectetur impedit dolores!</p>
+      </div>
+
+      <!-- This is For X-Text -->
+      <p>The name of Celebrity is <span x-text="name" class="fw-bold"></span></p>
+      
+      <!-- X-Effect -->
+      <div x-effect="console.log(open)"></div>
+      
+      
+      <!-- x-modal -->
+      <input type="text" x-model="search">
+ 
+      Searching for: <span x-text="search"></span>
+
+      <!-- x-if -->
+
+      <template x-if="open">
+        <div>The Context of this para is looking very Awesome as we want it...</div>
+      </template>
+
+      <template x-for="post in posts">
+        <p x-text="post.title"></p>
+      </template>
+
+    <button x-on:click="posts.push({title: 'New Post'})" class="btn btn-dark">Add Post</button>
+
+        <!-- x-ref -->
+
+    <div class="mt-5">
+      <h5 x-ref="text">Hello</h5>
+ 
+      <button x-on:click="$refs.text.remove()='Hello-World'">
+         click
+      </button>
+    </div>
+
+    <!-- x-html -->
+
+    <div x-html="(await axios.get('/some/html/partial')).data">
+      ...
+    </div>
+
+    <button @click="$el.innerHTML = 'Hello World!'">Replace me with "Hello World!"</button>
+
+    <div x-init="$watch('posts', value => console.log(value))">
+      
+  </div>
+
+<!-- notify & dispatch -->
+  <div @notify="alert('Hello World!')">
+    <button @click="$dispatch('notify')">
+        Notify
+    </button>
+</div>
+
+<div
+    x-data="{ title: 'Hello' }"
+    @set-title.window="title = $event.detail"
+>
+    <h1 x-text="title"></h1>
+</div>
+ 
+<div x-data>
+    <button @click="$dispatch('set-title', 'Hello World!')">Click me</button>
+</div>
+<!-- When clicked, the content of the h1 will set to "Hello World!". -->
+
+
+<!-- $Data -->
+<button @click="getLatestPost($data.posts)">Get Latest Post</button>
+  </div>
+  
+  
+  <div class="mt-5" x-data :class="$store.darkMode.on ? 'bg-black text-white w-25' : 'store.darkMode.off bg-danger w-25' " :class="$ && ''">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia vel vitae, deserunt, assumenda voluptatem a, qui voluptas numquam minus laborum optio saepe alias ab et blanditiis. Fuga velit aliquid repellendus.</p>
+  </div>
+  <button x-data @click="$store.darkMode.toggle()">Toggle Dark Mode</button>
+ 
+
+ <script type="module" src="js/main.js"></script>
+</body>
+</html>

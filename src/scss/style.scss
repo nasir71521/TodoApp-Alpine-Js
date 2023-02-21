@@ -1,0 +1,76 @@
+@import "~bootstrap/scss/bootstrap";
+
+[x-cloak] {
+    display: none;
+}
+
+body {
+    background-color: #890799 !important;
+    color: #fff !important;
+}
+
+.remove{
+    display: none;
+}
+  
+.user_input_task {
+    display: inline;
+    width: 80%;
+    height: 2rem;
+}
+.button {
+    width: 95px;
+    height: 34px;
+    border: none;
+    border-radius: 10px;
+}
+  
+  .button:hover {
+    background-color: #bdc7d9;
+  }
+  
+  .todo {
+    display: flex;
+    align-items: center;
+    min-width: 300px;
+    margin: 0.3em auto;
+  }
+  
+  .task-remove {
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+
+  .task-remove:hover{
+     color: red;
+  } 
+  
+  .task-item {
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: .1rem;
+    line-height: 1.2rem;
+    padding: 0 1.0rem;
+  }
+  
+  .task_edit {
+    min-width: 350px;
+    height: 2rem;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: black;
+  }
+  
+  .empty_task_msg {
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: .1rem;
+    line-height: 1.2rem;
+    margin: 0.3em auto;
+  }
+  img, svg {
+    height: 22px;
+    vertical-align: middle;
+}
